@@ -1,0 +1,341 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "WikiAutomation",
+    "version": "0.0.0",
+    "description": "Generated from the application's code.",
+    "x-app": "flask.app.Flask"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "index",
+        "tags": [
+          "app"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "HTML page",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "x-templates": [
+              "index.html"
+            ]
+          }
+        },
+        "x-kind": "page",
+        "x-source": "app.py:30"
+      }
+    },
+    "/api/enrollments": {
+      "post": {
+        "operationId": "api_enroll",
+        "tags": [
+          "api"
+        ],
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "JSON response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {},
+                    "name": {},
+                    "email": {},
+                    "status": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-kind": "api",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {},
+                  "email": {}
+                }
+              }
+            }
+          }
+        },
+        "x-source": "api/routes.py:39"
+      }
+    },
+    "/api/enrollments/{learner_id}": {
+      "get": {
+        "operationId": "api_get_enrollment",
+        "tags": [
+          "api"
+        ],
+        "parameters": [
+          {
+            "name": "learner_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-kind": "api",
+        "x-source": "api/routes.py:53"
+      }
+    },
+    "/api/health": {
+      "get": {
+        "operationId": "api_health",
+        "tags": [
+          "api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "JSON response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-kind": "api",
+        "x-source": "api/routes.py:21"
+      }
+    },
+    "/api/modules": {
+      "get": {
+        "operationId": "api_list_modules",
+        "tags": [
+          "api"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "JSON response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Module"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-kind": "api",
+        "x-source": "api/routes.py:26"
+      }
+    },
+    "/api/modules/{slug}": {
+      "get": {
+        "operationId": "api_get_module",
+        "tags": [
+          "api"
+        ],
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Module"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "x-kind": "api",
+        "x-source": "api/routes.py:31"
+      }
+    },
+    "/course/": {
+      "get": {
+        "operationId": "course_catalogue",
+        "tags": [
+          "course"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "HTML page",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "x-templates": [
+              "catalogue.html"
+            ]
+          }
+        },
+        "x-kind": "page",
+        "x-source": "course/routes.py:8"
+      }
+    },
+    "/course/{slug}": {
+      "get": {
+        "operationId": "course_module",
+        "tags": [
+          "course"
+        ],
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "HTML page",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "x-templates": [
+              "module.html",
+              "coming_soon.html"
+            ]
+          },
+          "404": {
+            "description": "Not found"
+          }
+        },
+        "x-kind": "page",
+        "x-source": "course/routes.py:13"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Module": {
+        "type": "object",
+        "properties": {
+          "number": {},
+          "slug": {},
+          "title": {},
+          "summary": {},
+          "ready": {},
+          "lessons": {
+            "type": "array"
+          }
+        }
+      }
+    }
+  },
+  "x-framework": "flask",
+  "x-generated-by": "qtv1 openapi_from_code"
+}
