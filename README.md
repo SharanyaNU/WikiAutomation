@@ -19,9 +19,8 @@ deliberately unfinished (about 10%) project, used as a realistic codebase to dem
 
 ```powershell
 python -m venv .venv
-.venv\Scripts\pip install -r requirements.txt -r requirements-dev.txt
+.venv\Scripts\pip install -r requirements.txt
 .venv\Scripts\flask --app app run --debug      # http://localhost:5000
-.venv\Scripts\pytest -q
 ```
 
 ## Roadmap
