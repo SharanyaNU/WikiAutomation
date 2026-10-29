@@ -98,7 +98,21 @@ MODULES: tuple[Module, ...] = (
             ),
         ),
     ),
-    Module(2, "chat-clients", "Models and chat clients", "Connect agents to Azure OpenAI and other providers."),
+    Module(
+        2,
+        "chat-clients",
+        "Models and chat clients",
+        "Connect agents to Azure OpenAI and other providers.",
+        (
+            Lesson(
+                "What a chat client does",
+                "<p>A <strong>chat client</strong> is the agent's connection to a model: it sends the conversation and "
+                "tool definitions to a provider such as Azure OpenAI and returns the model's reply.</p>"
+                "<p>Swapping providers means swapping the chat client; the agent's instructions and tools stay the "
+                "same.</p>",
+            ),
+        ),
+    ),
     Module(3, "tools", "Tools and function calling", "Give agents functions to call, safely."),
     Module(4, "state", "Conversation state and memory", "Sessions, history and long-term memory."),
     Module(5, "workflows", "Workflows and executors", "Edges, conditions and fan-out between executors."),
