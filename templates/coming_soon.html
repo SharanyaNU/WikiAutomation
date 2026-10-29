@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{{ module.title }} · {{ course.title }}{% endblock %}
+{% block content %}
+<p class="eyebrow">Module {{ module.number }}</p>
+<h1>{{ module.title }}</h1>
+<p class="lead">{{ module.summary }}</p>
+<div class="card">
+  <p>This module is being written. Start with <a href="{{ url_for('course.module', slug='introduction') }}">module 1</a>
+  in the meantime.</p>
+</div>
+{% endblock %}

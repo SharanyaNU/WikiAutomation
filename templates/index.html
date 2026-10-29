@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <p class="eyebrow">{{ course.level }} · {{ course.duration_weeks }} weeks</p>
+  <h1>{{ course.title }}</h1>
+  <p class="lead">{{ course.subtitle }}.</p>
+  <div class="progress" role="progressbar" aria-valuenow="{{ ready }}" aria-valuemin="0" aria-valuemax="{{ modules|length }}">
+    <span style="width: {{ (ready / modules|length * 100)|round|int }}%"></span>
+  </div>
+  <p class="muted">{{ ready }} of {{ modules|length }} modules published. New modules are added as they are written.</p>
+  <a class="button" href="{{ url_for('course.module', slug=modules[0].slug) }}">Start module 1</a>
+</section>
+
+<section>
+  <h2>What you will build</h2>
+  <ul class="grid">
+    <li><strong>Agents with tools</strong><span>Agents that call your functions and APIs.</span></li>
+    <li><strong>Workflows</strong><span>Graphs of executors that pass work between steps.</span></li>
+    <li><strong>Human review</strong><span>Workflows that pause for a person and resume.</span></li>
+    <li><strong>Agents in the browser</strong><span>Streaming runs to a web front end with AG-UI.</span></li>
+  </ul>
+</section>
+
+<section id="enroll" class="card">
+  <h2>Enrol</h2>
+  <p class="muted">Enrolment is available through the API while the sign-up page is being built:</p>
+  <pre><code>curl -X POST http://localhost:5000/api/enrollments \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Ada", "email": "ada@example.com"}'</code></pre>
+</section>
+{% endblock %}

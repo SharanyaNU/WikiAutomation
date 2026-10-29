@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Modules · {{ course.title }}{% endblock %}
+{% block content %}
+<h1>Modules</h1>
+<ol class="modules">
+  {% for m in modules %}
+  <li class="{{ 'ready' if m.ready else 'planned' }}">
+    <a href="{{ url_for('course.module', slug=m.slug) }}">
+      <span class="num">{{ m.number }}</span>
+      <span class="text"><strong>{{ m.title }}</strong><span>{{ m.summary }}</span></span>
+      <span class="tag">{{ 'Available' if m.ready else 'Coming soon' }}</span>
+    </a>
+  </li>
+  {% endfor %}
+</ol>
+{% endblock %}

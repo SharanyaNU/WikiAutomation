@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}{{ module.title }} · {{ course.title }}{% endblock %}
+{% block content %}
+<p class="eyebrow">Module {{ module.number }}</p>
+<h1>{{ module.title }}</h1>
+<p class="lead">{{ module.summary }}</p>
+{% for lesson in module.lessons %}
+<article class="card lesson">
+  <h2>{{ loop.index }}. {{ lesson.title }}</h2>
+  {{ lesson.body|safe }}
+  {% if lesson.code %}<pre><code>{{ lesson.code }}</code></pre>{% endif %}
+</article>
+{% endfor %}
+<p><a href="{{ url_for('course.catalogue') }}">All modules</a></p>
+{% endblock %}
