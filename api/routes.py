@@ -15,7 +15,7 @@ EMAIL = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
 def _module_json(m):
     return {"number": m.number, "slug": m.slug, "title": m.title, "summary": m.summary, "ready": m.ready,
-            "lessons": [lesson.title for lesson in m.lessons]}
+            "lesson_count": m.lesson_count, "lessons": [lesson.title for lesson in m.lessons]}
 
 
 @api_bp.get("/health")
@@ -25,7 +25,10 @@ def health():
 
 @api_bp.get("/modules")
 def list_modules():
-    return jsonify([_module_json(m) for m in MODULES])
+    """All modules, or only ready / planned ones with ?ready=true or ?ready=false."""
+    ready = request.args.get("ready", type=bool)
+    modules = MODULES if ready is None else [m for m in MODULES if m.ready == ready]
+    return jsonify([_module_json(m) for m in modules])
 
 
 @api_bp.get("/modules/<slug>")
