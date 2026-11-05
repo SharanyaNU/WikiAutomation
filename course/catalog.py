@@ -22,6 +22,10 @@ class Module:
     def ready(self) -> bool:
         return bool(self.lessons)
 
+    @property
+    def lesson_count(self) -> int:
+        return len(self.lessons)
+
 
 COURSE = {
     "title": "AI Engineer Course",
